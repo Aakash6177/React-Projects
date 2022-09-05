@@ -1,33 +1,49 @@
-import react from 'react';
+import react, {useState} from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
 
 export default function HeaderTabs(){
+
+    const [activeTab, setActiveTab] = useState("Delivery");
+
     return (
         <View style = {{flexDirection:"row", alignSelf: "center"}}>
-            <HeaderButton text = "Delivery" btnColor = "black" textColor = "white"/>
-            <HeaderButton text = "Pick Up" btnColor = "white" textColor = "black"/>
+     
+            <HeaderButton text = "Delivery"
+            btnColor = "black" 
+            textColor = "white"  
+            activeTab = {activeTab} 
+            setActiveTab = {setActiveTab}/>
+
+           
+            <HeaderButton text = "Pick Up"
+            btnColor = "white" 
+            textColor = "black"
+            activeTab = {activeTab} 
+            setActiveTab = {setActiveTab}/>
             
         </View>
     );
 }
 
-const HeaderButton = (porps) => (
-    <View>
+const HeaderButton = (props) => (
+   
         <TouchableOpacity style = {{
-            backgroundColor: porps.btnColor,
+            backgroundColor: props.activeTab === props.text ? "black" : "white",
             paddingVertical: 6,
             paddingHorizontal: 16,
             borderRadius: 30,
-        }}>
+        }}
+        onPress={() => props.setActiveTab(props.text)}
+        >
 
         <Text style={{ 
-            color:porps.textColor,
+            color: props.activeTab === props.text ? "white" : "black",
             fontSize: 15,
             fontWeight: '900' 
-            }}>{porps.text}</Text>
+            }}>{props.text}</Text>
             
         </TouchableOpacity>
         
-    </View>
+
 
 )

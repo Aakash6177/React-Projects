@@ -9,22 +9,20 @@ export default function SearchBar(){
 
     return (
         <View style={{marginTop: 15, flexDirection: "row"}}>
-            <GooglePlacesAutocomplete value = "Search" styles={{    
-                textInput: {
-                
-                    backgroundColor:"#eee",
-                    borderRadius: 10,
-                    fontWeight: '700',
-                    marginTop: 7,
-                },
-                textInputContainer: {
-                    backgroundColor:"#eee",
-                    borderRadius: 10,
-                    flexDirection: "row",
-                    alignItems: 'center',
-                    marginRight: 10,
-                },
-            }}
+               <GooglePlacesAutocomplete
+      ref={ref}
+      placeholder='Search'
+      onPress={(data, details = null) => {
+        // 'details' is provided when fetchDetails = true
+        console.log(data, details);
+      }}
+      query={{
+        key: 'YOUR API KEY',
+        language: 'en',
+      }}
+   
+            
+            
 
             renderLeftButton = {() => {
                 <View>
